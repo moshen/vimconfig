@@ -4,12 +4,3 @@
 [submodule "bundle/bufexplorer.zip"]
 	path = bundle/bufexplorer.zip
 	url = git://github.com/vim-scripts/bufexplorer.zip.git
-[submodule "bundle/Gist.vim"]
-	path = bundle/Gist.vim
-	url = git://github.com/vim-scripts/Gist.vim.git
-[submodule "bundle/SuperTab-continued."]
-	path = bundle/SuperTab-continued.
-	url = git://github.com/vim-scripts/SuperTab-continued..git
-[submodule "bundle/ZenCoding.vim"]
-	path = bundle/ZenCoding.vim
-	url = https://github.com/vim-scripts/ZenCoding.vim.git
