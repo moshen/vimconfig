@@ -10,3 +10,6 @@
 [submodule "bundle/Gist.vim"]
 	path = bundle/Gist.vim
 	url = git://github.com/vim-scripts/Gist.vim.git
+[submodule "bundle/SuperTab-continued."]
+	path = bundle/SuperTab-continued.
+	url = git://github.com/vim-scripts/SuperTab-continued..git
