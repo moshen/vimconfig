@@ -4,6 +4,3 @@
 [submodule "bundle/bufexplorer.zip"]
 	path = bundle/bufexplorer.zip
 	url = git://github.com/vim-scripts/bufexplorer.zip.git
-[submodule "bundle/Wombat"]
-	path = bundle/Wombat
-	url = https://github.com/vim-scripts/Wombat.git
