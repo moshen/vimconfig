@@ -4,3 +4,15 @@
 [submodule "bundle/Wombat"]
 	path = bundle/Wombat
 	url = http://github.com/vim-scripts/Wombat.git
+[submodule "bundle/SelectBuf"]
+	path = bundle/SelectBuf
+	url = http://github.com/vim-scripts/SelectBuf.git
+[submodule "bundle/genutils"]
+	path = bundle/genutils
+	url = http://github.com/vim-scripts/genutils.git
+[submodule "bundle/git.zip"]
+	path = bundle/git.zip
+	url = http://github.com/vim-scripts/git.zip.git
+[submodule "bundle/SuperTab"]
+	path = bundle/SuperTab
+	url = http://github.com/vim-scripts/SuperTab.git
