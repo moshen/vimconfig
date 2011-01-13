@@ -16,3 +16,6 @@
 [submodule "bundle/SuperTab"]
 	path = bundle/SuperTab
 	url = http://github.com/vim-scripts/SuperTab.git
+[submodule "bundle/Gist.vim"]
+	path = bundle/Gist.vim
+	url = http://github.com/vim-scripts/Gist.vim.git
