@@ -1,27 +1,3 @@
 [submodule "vim-pathogen"]
 	path = vim-pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule "bundle/Wombat"]
-	path = bundle/Wombat
-	url = http://github.com/vim-scripts/Wombat.git
-[submodule "bundle/SelectBuf"]
-	path = bundle/SelectBuf
-	url = http://github.com/vim-scripts/SelectBuf.git
-[submodule "bundle/genutils"]
-	path = bundle/genutils
-	url = http://github.com/vim-scripts/genutils.git
-[submodule "bundle/git.zip"]
-	path = bundle/git.zip
-	url = http://github.com/vim-scripts/git.zip.git
-[submodule "bundle/SuperTab"]
-	path = bundle/SuperTab
-	url = http://github.com/vim-scripts/SuperTab.git
-[submodule "bundle/wombat256.vim"]
-	path = bundle/wombat256.vim
-	url = http://github.com/vim-scripts/wombat256.vim.git
-[submodule "bundle/The-NERD-tree"]
-	path = bundle/The-NERD-tree
-	url = http://github.com/vim-scripts/The-NERD-tree.git
-[submodule "bundle/Gist.vim"]
-	path = bundle/Gist.vim
-	url = git://github.com/vim-scripts/Gist.vim.git
