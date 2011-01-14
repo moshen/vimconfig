@@ -22,3 +22,6 @@
 [submodule "bundle/The-NERD-tree"]
 	path = bundle/The-NERD-tree
 	url = http://github.com/vim-scripts/The-NERD-tree.git
+[submodule "bundle/Gist.vim"]
+	path = bundle/Gist.vim
+	url = git://github.com/vim-scripts/Gist.vim.git
