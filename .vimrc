@@ -4,6 +4,8 @@ call pathogen#runtime_append_all_bundles()
 
 set backupskip=/tmp/*,/private/tmp/*"
 
+colorscheme wombat256
+
 set background=dark
 filetype indent on
 syntax on
