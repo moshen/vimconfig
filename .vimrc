@@ -7,7 +7,7 @@ set backupskip=/tmp/*,/private/tmp/*"
 colorscheme wombat256
 
 set background=dark
-filetype indent on
+filetype plugin on
 syntax on
 
 
