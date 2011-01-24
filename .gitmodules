@@ -25,3 +25,6 @@
 [submodule "bundle/wombat256.vim"]
 	path = bundle/wombat256.vim
 	url = git://github.com/vim-scripts/wombat256.vim.git
+[submodule "bundle/csc.vim--Yuan"]
+	path = bundle/csc.vim--Yuan
+	url = git://github.com/vim-scripts/csc.vim--Yuan.git
