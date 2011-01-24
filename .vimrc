@@ -4,7 +4,7 @@ call pathogen#runtime_append_all_bundles()
 
 set backupskip=/tmp/*,/private/tmp/*"
 
-colorscheme wombat256
+colorscheme wombat256mod
 
 set background=dark
 filetype plugin on
