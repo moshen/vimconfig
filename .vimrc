@@ -10,6 +10,11 @@ set background=dark
 filetype plugin on
 syntax on
 
+ augroup mkd
+
+  autocmd BufRead *.md  set ai formatoptions=tcroqn2 comments=n:&gt;
+
+ augroup END
 
 
 set nu!
