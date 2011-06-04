@@ -1,6 +1,3 @@
-[submodule "vim-pathogen"]
-	path = vim-pathogen
-	url = https://github.com/tpope/vim-pathogen.git
 [submodule "bundle/Gist.vim"]
 	path = bundle/Gist.vim
 	url = git://github.com/vim-scripts/Gist.vim.git
@@ -28,3 +25,9 @@
 [submodule "bundle/Markdown-syntax"]
 	path = bundle/Markdown-syntax
 	url = git://github.com/vim-scripts/Markdown-syntax.git
+[submodule "vim-pathogen"]
+	path = vim-pathogen
+	url = git://github.com/tpope/vim-pathogen.git
+[submodule "bundle/Conque-Shell"]
+	path = bundle/Conque-Shell
+	url = git://github.com/vim-scripts/Conque-Shell.git
