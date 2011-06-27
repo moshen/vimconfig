@@ -19,9 +19,17 @@ syntax on
 
 set nu!
 set tabstop=2
-set expandtab
-set shiftwidth=2
 set wrap
 set autoindent
+set backspace=indent,eol,start
 
+" Mappings
+
+map ;] :tabnext<cr>
+map ;[ :tabprevious<cr>
+
+" Work
+
+set expandtab
+set shiftwidth=2
 
