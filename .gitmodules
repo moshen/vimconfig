@@ -28,3 +28,6 @@
 [submodule "vim-pathogen"]
 	path = vim-pathogen
 	url = git://github.com/tpope/vim-pathogen.git
+[submodule "bundle/vim-lesscss"]
+	path = bundle/vim-lesscss
+	url = git://github.com/itspriddle/vim-lesscss.git
