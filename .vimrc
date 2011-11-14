@@ -17,11 +17,17 @@ syntax on
  augroup END
 
 
+set laststatus=2
+
 set nu!
 set tabstop=2
 set wrap
 set autoindent
 set backspace=indent,eol,start
+
+" SuperStatus
+let g:superstatus_arrows = 'compatible'
+let g:superstatus_statusline = 'COMPATIBLE'
 
 " Mappings
 
