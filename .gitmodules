@@ -31,6 +31,3 @@
 [submodule "bundle/vim-lesscss"]
 	path = bundle/vim-lesscss
 	url = git://github.com/itspriddle/vim-lesscss.git
-[submodule "bundle/vim-superstatus"]
-	path = bundle/vim-superstatus
-	url = git://github.com/moshen/vim-superstatus.git
