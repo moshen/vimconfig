@@ -30,10 +30,6 @@ set wrap
 set autoindent
 set backspace=indent,eol,start
 
-" SuperStatus
-let g:superstatus_arrows = 'compatible'
-let g:superstatus_statusline = 'COMPATIBLE'
-
 " Mappings
 
 "   Tab nav
