@@ -41,9 +41,9 @@ map ;] :tabnext<cr>
 map ;[ :tabprevious<cr>
 
 "   FuzzyFinder
-map fb :FufBuffer<cr>
-map fn :FufFile<cr>
-map fd :FufDir<cr>
+map <C-x>b :FufBuffer<cr>
+map <C-x>f :FufFile<cr>
+map <C-x>d :FufDir<cr>
 
 " Work
 
