@@ -1,6 +1,3 @@
-[submodule "bundle/Gist.vim"]
-	path = bundle/Gist.vim
-	url = git://github.com/vim-scripts/Gist.vim.git
 [submodule "bundle/SelectBuf"]
 	path = bundle/SelectBuf
 	url = git://github.com/vim-scripts/SelectBuf.git
