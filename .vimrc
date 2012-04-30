@@ -1,7 +1,27 @@
 set nocompatible
 filetype off 
-call pathogen#helptags()
-call pathogen#runtime_append_all_bundles()
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+
+" Bundles
+" vim-scripts
+Bundle "SelectBuf"
+Bundle "SuperTab"
+Bundle "The-NERD-tree"
+Bundle "Wombat"
+Bundle "wombat256.vim"
+Bundle "genutils"
+Bundle "git.zip"
+Bundle "L9"
+Bundle "FuzzyFinder"
+" github
+Bundle "itspriddle/vim-lesscss"
+Bundle "plasticboy/vim-markdown"
 
 set backupskip=/tmp/*,/private/tmp/*"
 
@@ -37,12 +57,14 @@ map ;] :tabnext<cr>
 map ;[ :tabprevious<cr>
 
 "   FuzzyFinder
-map fb :FufBuffer<cr>
-map fn :FufFile<cr>
-map fd :FufDir<cr>
+map <C-x>b :FufBuffer<cr>
+map <C-x>f :FufFile<cr>
+map <C-x>d :FufDir<cr>
 
 " Work
 
 set expandtab
 set shiftwidth=2
+
+let g:vundle_default_git_proto = 'git'
 
