@@ -18,10 +18,10 @@ Bundle "wombat256.vim"
 Bundle "genutils"
 Bundle "git.zip"
 Bundle "L9"
-Bundle "FuzzyFinder"
 " github
 Bundle "itspriddle/vim-lesscss"
 Bundle "plasticboy/vim-markdown"
+Bundle "kien/ctrlp.vim"
 
 set backupskip=/tmp/*,/private/tmp/*"
 
@@ -56,15 +56,17 @@ set backspace=indent,eol,start
 map ;] :tabnext<cr>
 map ;[ :tabprevious<cr>
 
-"   FuzzyFinder
-map <C-x>b :FufBuffer<cr>
-map <C-x>f :FufFile<cr>
-map <C-x>d :FufDir<cr>
-
 " Work
 
 set expandtab
 set shiftwidth=2
 
+let NERDTreeDirArrows = 0
+let g:ctrlp_working_path_mode = 0
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\.git$\|CVS$\|\.svn$\|target$',
+  \ 'file': '\.class$\|\.so$',
+  \ }
+let g:ctrlp_extensions = ['dir', 'mixed']
 let g:vundle_default_git_proto = 'git'
 
