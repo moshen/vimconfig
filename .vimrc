@@ -33,15 +33,16 @@ syntax on
 
 " Autosettings
 augroup mkd
-  autocmd FileType mkd set ai spell nofoldenable
+  autocmd FileType mkd set ai spell nofoldenable colorcolumn=80
   " old options: formatoptions=tcroqn2 comments=n:&gt;
 augroup END
 
-augroup gitcommit
-  autocmd FileType gitcommit set spell
+augroup commit
+  autocmd FileType gitcommit,cvs set spell textwidth=72 colorcolumn=73
 augroup END
 
 
+" Enable the status bar
 set laststatus=2
 
 set nu!
