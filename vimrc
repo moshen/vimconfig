@@ -22,6 +22,7 @@ Bundle "L9"
 Bundle "itspriddle/vim-lesscss"
 Bundle "plasticboy/vim-markdown"
 Bundle "kien/ctrlp.vim"
+Bundle "Lokaltog/vim-powerline"
 
 set backupskip=/tmp/*,/private/tmp/*"
 
@@ -62,7 +63,6 @@ map ;[ :tabprevious<cr>
 set expandtab
 set shiftwidth=2
 
-let NERDTreeDirArrows = 0
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|CVS$\|\.svn$\|target$',
