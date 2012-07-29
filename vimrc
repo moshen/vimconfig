@@ -26,7 +26,10 @@ Bundle "Lokaltog/vim-powerline"
 
 set backupskip=/tmp/*,/private/tmp/*"
 
-colorscheme wombat256mod
+try
+  colorscheme wombat256mod
+catch
+endtry
 
 set background=dark
 filetype plugin on
