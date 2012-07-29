@@ -1,14 +1,14 @@
 #!/bin/bash -i
 
-# Grab Vundle
-git submodule init
-git submodule update
+cd $HOME/.vim
 
-# Install Bundles
-vim +BundleInstall +qall
+# Grab Vundle
+git clone git@github.com:gmarik/vundle.git bundle/vundle
 
 # Link up!
 cd $HOME
 ln -s .vim/vimrc .vimrc
 ln -s .vim/gvimrc .gvimrc
 
+# Install Bundles
+vim +BundleInstall +qall
