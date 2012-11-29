@@ -1,15 +1,39 @@
 #!/bin/bash -i
 
-cd $HOME/.vim
+cd $HOME
 
 timestamp=$(date "+%Y%m%d_%H%M%S")
+branch="master"
+
+# Check for Remote flag
+if [ "$1" == "-r" ]; then
+  echo "Remote setup..."
+  shift
+
+  git clone git@github.com:moshen/vimconfig.git .vim
+  if [ $? -ne 0 ]; then
+    echo "Remote clone failed, bailing out..."
+    exit 1
+  fi
+fi
+
+if [ "$1" ]; then
+  branch=$1
+fi
+
+cd .vim
 
 # Grab Vundle
 git clone git@github.com:gmarik/vundle.git bundle/vundle
-
 if [ $? -ne 0 ]; then
   echo "Git clone failed, bailing out..."
-  exit 1;
+  exit 1
+fi
+
+git checkout $branch
+if [ $? -ne 0 ]; then
+  echo "Git checkout failed, continuing...
+  but seriously, check your available branches."
 fi
 
 # Link up!
@@ -33,4 +57,6 @@ done
 vim +BundleInstall +qall
 
 echo "Done!  Vim is fully configured."
+
+exit 0
 
