@@ -37,12 +37,12 @@ syntax on
 
 " Autosettings
 augroup mkd
-  autocmd FileType mkd set ai spell nofoldenable colorcolumn=80
+  autocmd FileType mkd setlocal ai spell nofoldenable colorcolumn=80
   " old options: formatoptions=tcroqn2 comments=n:&gt;
 augroup END
 
 augroup commit
-  autocmd FileType gitcommit,cvs set spell textwidth=72 colorcolumn=73
+  autocmd FileType gitcommit,cvs setlocal spell textwidth=72 colorcolumn=73
 augroup END
 
 
