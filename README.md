@@ -26,5 +26,5 @@ Here's a handy script for copy-paste:
 
 Installing directly from GitHub:
 
-    curl "https://raw.github.com/moshen/vimconfig/master/setup.sh" | bash -i - -r
+    (echo set -- -r; curl "https://raw.github.com/moshen/vimconfig/master/setup.sh") | bash
 
