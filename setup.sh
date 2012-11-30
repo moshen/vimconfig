@@ -22,6 +22,8 @@ if [ "$1" == "-r" ]; then
   fi
 fi
 
+echo "\n\n"
+
 if [ "$1" ]; then
   branch=$1
 fi
@@ -59,7 +61,7 @@ for f in vimrc gvimrc; do
 done
 
 # Install Bundles
-vim +BundleInstall +qall
+vim +BundleInstall +qall 2>/dev/null
 
 echo "Done!  Vim is fully configured."
 
