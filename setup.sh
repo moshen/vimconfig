@@ -10,6 +10,11 @@ if [ "$1" == "-r" ]; then
   echo "Remote setup..."
   shift
 
+  if [ -e ".vim" ]; then
+    echo "$HOME/.vim exists, moving to .vim.$timestamp"
+    mv .vim .vim.$timestamp
+  fi
+
   git clone git@github.com:moshen/vimconfig.git .vim
   if [ $? -ne 0 ]; then
     echo "Remote clone failed, bailing out..."
