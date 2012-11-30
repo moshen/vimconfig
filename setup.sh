@@ -21,7 +21,9 @@ if [ "$1" == "-r" ]; then
     exit 1
   fi
 
-  echo "\n\n"
+  echo "
+"
+
 fi
 
 if [ "$1" ]; then
