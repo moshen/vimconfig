@@ -20,9 +20,9 @@ if [ "$1" == "-r" ]; then
     echo "Remote clone failed, bailing out..."
     exit 1
   fi
-fi
 
-echo "\n\n"
+  echo "\n\n"
+fi
 
 if [ "$1" ]; then
   branch=$1
