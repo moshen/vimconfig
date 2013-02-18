@@ -49,7 +49,7 @@ augroup END
 " Enable the status bar
 set laststatus=2
 
-set nu!
+set number
 set tabstop=2
 set wrap
 set autoindent
