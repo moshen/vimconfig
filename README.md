@@ -17,6 +17,8 @@ Run `setup.sh`!
     -r     - Remote mode, grabs the entire vimconfig from git
     branch - Detaults to master, vimconfig branch to checkout
 
+---------------------------------------
+
 Here's a handy script for copy-paste:
 
     cd $HOME &&
@@ -24,7 +26,7 @@ Here's a handy script for copy-paste:
     cd .vim &&
     ./setup.sh
 
-Installing directly from GitHub:
+OR... Installing directly from GitHub:
 
     (echo set -- -r; curl "https://raw.github.com/moshen/vimconfig/master/setup.sh") | bash
 
