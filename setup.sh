@@ -33,10 +33,12 @@ fi
 cd .vim
 
 # Grab Vundle
-git clone git@github.com:gmarik/vundle.git bundle/vundle
-if [ $? -ne 0 ]; then
-  echo "Git clone failed, bailing out..."
-  exit 1
+if [ ! -d "bundle/vundle/.git" ]; then
+  git clone git@github.com:gmarik/vundle.git bundle/vundle
+  if [ $? -ne 0 ]; then
+    echo "Git clone failed, bailing out..."
+    exit 1
+  fi
 fi
 
 git checkout $branch
@@ -48,15 +50,27 @@ fi
 # Link up!
 cd $HOME
 
+# Check for readlink on Solaris/BSD
+readlink=$(type -p greadlink readlink | head -1)
+
 for f in vimrc gvimrc; do
-  if [ -f ".$f" ]; then
-    if [ "$(readlink -n .$f)" == ".vim/$f" ]; then
-      echo "$HOME/.$f already links to the right file"
-    else
-      echo "$HOME/.$f exists, moving to .$f.$timestamp"
-      mv .$f .$f.$timestamp
-      ln -s .vim/$f .$f
+  if [ -L ".$f" ]; then
+    if [ "$readlink" ]; then
+      if [ "$($readlink -n .$f)" == ".vim/$f" ]; then
+        echo "$HOME/.$f already links to the right file"
+        continue
+      fi
     fi
+
+    echo "$HOME/.$f exists, moving to .$f.$timestamp"
+    mv .$f .$f.$timestamp
+    ln -s .vim/$f .$f
+
+  elif [ -e ".$f" ]; then
+    echo "$HOME/.$f exists, moving to .$f.$timestamp"
+    mv .$f .$f.$timestamp
+    ln -s .vim/$f .$f
+
   else
     ln -s .vim/$f .$f
   fi
