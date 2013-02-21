@@ -11,18 +11,18 @@ Bundle 'gmarik/vundle'
 " Bundles
 " vim-scripts
 Bundle "SelectBuf"
-Bundle "SuperTab"
+Bundle "SuperTab-continued."
 Bundle "The-NERD-tree"
 Bundle "Wombat"
 Bundle "wombat256.vim"
 Bundle "genutils"
-Bundle "git.zip"
-Bundle "L9"
+Bundle "EasyMotion"
 " github
-Bundle "itspriddle/vim-lesscss"
+Bundle "groenewege/vim-less"
 Bundle "plasticboy/vim-markdown"
 Bundle "kien/ctrlp.vim"
 Bundle "Lokaltog/vim-powerline"
+Bundle "tpope/vim-git"
 
 set backupskip=/tmp/*,/private/tmp/*"
 
