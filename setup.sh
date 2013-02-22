@@ -124,7 +124,8 @@ for f in vimrc gvimrc; do
 done
 
 # Install Bundles
-vim +BundleInstall +qall 2>/dev/null
+vim +BundleInstall +qall 2>/dev/null ||
+  { echo "Vim exited with $?, you may need to check your config."; exit 1; }
 
 echo "Done!  Vim is fully configured."
 
