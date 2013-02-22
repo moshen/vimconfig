@@ -16,7 +16,7 @@ function print_help {
 -u      Update Vim config from GitHub and update all Bundles
 -h      Print this help
 branch  The branch name to checkout after setup.
-        Only works with -r or no options.
+        Defaults to 'master'. Only works with -r or no options
 "
 
   exit 1;

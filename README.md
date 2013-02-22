@@ -12,10 +12,13 @@ Run `setup.sh`!
 
 `setup.sh` usage:
 
-    ./setup.sh [-r] [branch]
+    ./setup.sh [-r|-u|-h] [branch]
 
-    -r     - Remote mode, grabs the entire vimconfig from git
-    branch - Detaults to master, vimconfig branch to checkout
+    -r      Remote setup, grabs your Vim config from GitHub
+    -u      Update Vim config from GitHub and update all Bundles
+    -h      Print this help
+    branch  The branch name to checkout after setup.
+            Defaults to 'master'. Only works with -r or no options
 
 ---------------------------------------
 
