@@ -1,5 +1,9 @@
 #!/bin/bash -i
 
+
+# Bail out on failure
+set -e
+
 cd $HOME
 
 timestamp=$(date "+%Y%m%d_%H%M%S")
@@ -15,15 +19,31 @@ if [ "$1" == "-r" ]; then
     mv .vim .vim.$timestamp
   fi
 
-  git clone git@github.com:moshen/vimconfig.git .vim
-  if [ $? -ne 0 ]; then
-    echo "Remote clone failed, bailing out..."
-    exit 1
-  fi
+  git clone git@github.com:moshen/vimconfig.git .vim ||
+    { echo "Remote clone failed, bailing out..."; exit 1; }
 
   echo "
 "
 
+elif [ "$1" == "-u" ]; then
+  echo "Updating current config..."
+  shift
+
+  cd .vim
+
+  # Check for an unclean repo
+  { git diff-index --quiet --cached HEAD &&
+    git diff-files --quiet; } ||
+    { echo "Unclean repo, exiting..."; exit 1; }
+
+  # Get changes from Git!
+  git pull origin ||
+    { echo "Failed to pull changes, exiting..."; exit 1; }
+
+  # Update Bundles
+  vim +BundleInstall +BundleUpdate +qall 2>/dev/null
+
+  exit 0;
 fi
 
 if [ "$1" ]; then
@@ -34,18 +54,13 @@ cd .vim
 
 # Grab Vundle
 if [ ! -d "bundle/vundle/.git" ]; then
-  git clone git@github.com:gmarik/vundle.git bundle/vundle
-  if [ $? -ne 0 ]; then
-    echo "Git clone failed, bailing out..."
-    exit 1
-  fi
+  git clone git@github.com:gmarik/vundle.git bundle/vundle ||
+    { echo "Git clone failed, bailing out..."; exit 1; }
 fi
 
-git checkout $branch
-if [ $? -ne 0 ]; then
+git checkout $branch ||
   echo "Git checkout failed, continuing...
   but seriously, check your available branches."
-fi
 
 # Link up!
 cd $HOME
