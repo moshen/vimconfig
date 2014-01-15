@@ -39,7 +39,7 @@ case $1 in
     mv .vim .vim.$timestamp
   fi
 
-  git clone git@github.com:moshen/vimconfig.git .vim ||
+  git clone https://github.com/moshen/vimconfig.git .vim ||
     { echo "Remote clone failed, bailing out..."; exit 1; }
 
   echo "
@@ -84,7 +84,7 @@ fi
 cd .vim
 
 # Grab Vundle
-git clone git@github.com:gmarik/vundle.git bundle/vundle ||
+git clone https://github.com/gmarik/vundle.git bundle/vundle ||
   { echo "Failed to clone Vundle.
 
 If you're trying to update, use the -u flag!"; exit 1; }
