@@ -23,6 +23,7 @@ Bundle "plasticboy/vim-markdown"
 Bundle "kien/ctrlp.vim"
 Bundle "Lokaltog/vim-powerline"
 Bundle "tpope/vim-git"
+Bundle "bling/vim-airline"
 
 set backupskip=/tmp/*,/private/tmp/*"
 
@@ -45,9 +46,12 @@ augroup commit
   autocmd FileType gitcommit,cvs setlocal spell textwidth=72 colorcolumn=73
 augroup END
 
+" Enable the mouse
+set mouse=a
 
 " Enable the status bar
 set laststatus=2
+let g:airline_powerline_fonts = 1
 
 set number
 set tabstop=2
