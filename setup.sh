@@ -62,7 +62,7 @@ case $1 in
     { echo "Failed to pull changes, exiting..."; exit 1; }
 
   # Update Bundles
-  vim +BundleInstall +BundleUpdate +qall 2>/dev/null
+  vim +BundleClean! +BundleInstall +BundleUpdate +qall 2>/dev/null
 
   echo "Done! Your vim config is up-to-date"
 
