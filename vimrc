@@ -50,7 +50,10 @@ set mouse=a
 
 " Enable the status bar
 set laststatus=2
-let g:airline_powerline_fonts = 1
+
+if $POWERLINE_FONT
+  let g:airline_powerline_fonts = 1
+endif
 
 set number
 set tabstop=2
