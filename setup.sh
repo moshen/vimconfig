@@ -58,7 +58,7 @@ case $1 in
     { echo "Unclean repo, exiting..."; exit 1; }
 
   # Get changes from Git!
-  git pull origin ||
+  git pull origin $(git rev-parse --abbrev-ref HEAD)||
     { echo "Failed to pull changes, exiting..."; exit 1; }
 
   # Update Bundles
