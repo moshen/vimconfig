@@ -21,7 +21,6 @@ Bundle "EasyMotion"
 Bundle "groenewege/vim-less"
 Bundle "plasticboy/vim-markdown"
 Bundle "kien/ctrlp.vim"
-Bundle "Lokaltog/vim-powerline"
 Bundle "tpope/vim-git"
 Bundle "bling/vim-airline"
 
