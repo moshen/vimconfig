@@ -56,6 +56,7 @@ if $POWERLINE_FONT
   let g:airline_powerline_fonts = 1
 endif
 
+set hlsearch
 set number
 set tabstop=2
 set wrap
