@@ -36,9 +36,8 @@ filetype plugin on
 syntax on
 
 " Autosettings
-augroup mkd
+augroup mkd " MarkDown
   autocmd FileType mkd setlocal ai spell nofoldenable colorcolumn=80
-  " old options: formatoptions=tcroqn2 comments=n:&gt;
 augroup END
 
 augroup commit
