@@ -45,7 +45,9 @@ augroup commit
 augroup END
 
 " Enable the mouse
-set mouse=a
+if has('mouse')
+  set mouse=a
+endif
 
 " Enable the status bar
 set laststatus=2
