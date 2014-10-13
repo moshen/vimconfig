@@ -1,28 +1,30 @@
 set nocompatible
 filetype off 
 
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
 
 " let Vundle manage Vundle
 " required! 
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/Vundle.vim'
 
-" Bundles
+" Plugins
 " vim-scripts
-Bundle "SelectBuf"
-Bundle "SuperTab-continued."
-Bundle "The-NERD-tree"
-Bundle "Wombat"
-Bundle "wombat256.vim"
-Bundle "genutils"
-Bundle "EasyMotion"
+Plugin 'SelectBuf'
+Plugin 'Wombat'
+Plugin 'wombat256.vim'
+Plugin 'genutils'
 " github
-Bundle "groenewege/vim-less"
-Bundle "plasticboy/vim-markdown"
-Bundle "kien/ctrlp.vim"
-Bundle "tpope/vim-git"
-Bundle "bling/vim-airline"
+Plugin 'groenewege/vim-less'
+Plugin 'plasticboy/vim-markdown'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-git'
+Plugin 'bling/vim-airline'
+Plugin 'scrooloose/nerdtree'
+Plugin 'ervandew/supertab'
+Plugin 'Lokaltog/vim-easymotion'
+
+call vundle#end()
 
 set backupskip=/tmp/*,/private/tmp/*"
 

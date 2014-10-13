@@ -13,7 +13,7 @@ function print_help {
 ./setup.sh [-r|-u|-h] [branch]
 
 -r      Remote setup, grabs your Vim config from GitHub
--u      Update Vim config from GitHub and update all Bundles
+-u      Update Vim config from GitHub and update all Plugins
 -h      Print this help
 branch  The branch name to checkout after setup.
         Defaults to 'master'. Only works with -r or no options
@@ -61,8 +61,8 @@ case $1 in
   git pull origin $(git rev-parse --abbrev-ref HEAD)||
     { echo "Failed to pull changes, exiting..."; exit 1; }
 
-  # Update Bundles
-  vim +BundleClean! +BundleInstall +BundleUpdate +qall 2>/dev/null
+  # Update Plugins
+  vim +PluginClean! +PluginInstall +PluginUpdate +qall 2>/dev/null
 
   echo "Done! Your vim config is up-to-date"
 
@@ -84,7 +84,7 @@ fi
 cd .vim
 
 # Grab Vundle
-git clone https://github.com/gmarik/vundle.git bundle/vundle ||
+git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim ||
   { echo "Failed to clone Vundle.
 
 If you're trying to update, use the -u flag!"; exit 1; }
@@ -123,8 +123,8 @@ for f in vimrc gvimrc; do
   fi
 done
 
-# Install Bundles
-echo "" | vim +BundleInstall +qall - ||
+# Install Plugins
+echo "" | vim +PluginInstall +qall - ||
   { echo "Vim exited with $?, you may need to check your config."; exit 1; }
 
 echo "Done!  Vim is fully configured."

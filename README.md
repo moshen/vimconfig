@@ -15,7 +15,7 @@ Run `setup.sh`!
     ./setup.sh [-r|-u|-h] [branch]
 
     -r      Remote setup, grabs your Vim config from GitHub
-    -u      Update Vim config from GitHub and update all Bundles
+    -u      Update Vim config from GitHub and update all Plugins
     -h      Print this help
     branch  The branch name to checkout after setup.
             Defaults to 'master'. Only works with -r or no options
