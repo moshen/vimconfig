@@ -31,5 +31,5 @@ Here's a handy script for copy-paste:
 
 OR... Installing directly from GitHub:
 
-    (echo set -- -r; curl "https://raw.github.com/moshen/vimconfig/master/setup.sh") | bash
+    (echo set -- -r; curl "https://raw.githubusercontent.com/moshen/vimconfig/master/setup.sh") | bash
 
