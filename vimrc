@@ -65,6 +65,19 @@ set wrap
 set autoindent
 set backspace=indent,eol,start
 
+" GUI
+
+if has("gui_running")
+  colorscheme wombat
+
+  if has("gui_win32") || has("gui_win32s")
+    set guifont=Ubuntu_Mono_derivative_Powerlin:h18
+    let g:airline_powerline_fonts = 1
+    set encoding=utf-8
+    set fileencodings=ucs-bom,utf-8
+  endif
+endif
+
 " Mappings
 
 "   Tab nav

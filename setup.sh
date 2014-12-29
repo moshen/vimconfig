@@ -100,7 +100,7 @@ cd $HOME
 # Check for readlink on Solaris/BSD
 readlink=$(type -p greadlink readlink | head -1)
 
-for f in vimrc gvimrc; do
+for f in vimrc; do
   if [ -L ".$f" ]; then
     if [ "$readlink" ]; then
       if [ "$($readlink -n .$f)" == ".vim/$f" ]; then
