@@ -91,7 +91,7 @@ set shiftwidth=2
 
 let g:ctrlp_working_path_mode = 0
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|CVS$\|\.svn$\|target$',
+  \ 'dir':  '\.git$\|CVS$\|\.svn$\|target$\|node_modules',
   \ 'file': '\.class$\|\.so$',
   \ }
 let g:ctrlp_extensions = ['dir', 'mixed']
