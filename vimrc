@@ -10,7 +10,6 @@ Plugin 'gmarik/Vundle.vim'
 
 " Plugins
 " vim-scripts
-Plugin 'SelectBuf'
 Plugin 'Wombat'
 Plugin 'wombat256.vim'
 Plugin 'genutils'
