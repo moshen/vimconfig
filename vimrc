@@ -22,6 +22,7 @@ Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
 Plugin 'Lokaltog/vim-easymotion'
+Plugin 'embear/vim-localvimrc'
 
 call vundle#end()
 
@@ -57,6 +58,7 @@ if $POWERLINE_FONT
   let g:airline_powerline_fonts = 1
 endif
 
+set hidden
 set hlsearch
 set number
 set tabstop=2
