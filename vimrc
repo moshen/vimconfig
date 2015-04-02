@@ -16,7 +16,7 @@ Plugin 'genutils'
 " github
 Plugin 'groenewege/vim-less'
 Plugin 'plasticboy/vim-markdown'
-Plugin 'kien/ctrlp.vim'
+Plugin 'ctrlpvim/ctrlp.vim'
 Plugin 'tpope/vim-git'
 Plugin 'bling/vim-airline'
 Plugin 'scrooloose/nerdtree'
