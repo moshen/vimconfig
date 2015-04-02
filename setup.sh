@@ -100,26 +100,29 @@ cd $HOME
 # Check for readlink on Solaris/BSD
 readlink=$(type -p greadlink readlink | head -1)
 
-for f in vimrc; do
-  if [ -L ".$f" ]; then
+toLink=( .vimrc .nvimrc .nvim )
+linkTargets=( .vim/vimrc .vimrc .vim )
+
+for i in ${!toLink[@]}; do
+  if [ -L "${toLink[$i]}" ]; then
     if [ "$readlink" ]; then
-      if [ "$($readlink -n .$f)" == ".vim/$f" ]; then
-        echo "$HOME/.$f already links to the right file"
+      if [ "$($readlink -n ${toLink[$i]})" == "${linkTargets[$i]}" ]; then
+        echo "$HOME/${toLink[$i]} already links to ${linkTargets[$i]}"
         continue
       fi
     fi
 
-    echo "$HOME/.$f exists, moving to .$f.$timestamp"
-    mv .$f .$f.$timestamp
-    ln -s .vim/$f .$f
+    echo "$HOME/${toLink[$i]} exists, moving to ${toLink[$i]}.$timestamp"
+    mv ${toLink[$i]} ${toLink[$i]}.$timestamp
+    ln -s ${linkTargets[$i]} ${toLink[$i]}
 
-  elif [ -e ".$f" ]; then
-    echo "$HOME/.$f exists, moving to .$f.$timestamp"
-    mv .$f .$f.$timestamp
-    ln -s .vim/$f .$f
+  elif [ -e "${toLink[$i]}" ]; then
+    echo "$HOME/${toLink[$i]} exists, moving to ${toLink[$i]}.$timestamp"
+    mv ${toLink[$i]} ${toLink[$i]}.$timestamp
+    ln -s ${linkTargets[$i]} ${toLink[$i]}
 
   else
-    ln -s .vim/$f .$f
+    ln -s ${linkTargets[$i]} ${toLink[$i]}
   fi
 done
 
