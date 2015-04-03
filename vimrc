@@ -1,11 +1,11 @@
 set nocompatible
-filetype off 
+filetype off
 
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
-" required! 
+" required!
 Plugin 'gmarik/Vundle.vim'
 
 " Plugins
@@ -23,6 +23,7 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'ervandew/supertab'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'embear/vim-localvimrc'
+Plugin 'ntpeters/vim-better-whitespace'
 
 call vundle#end()
 
