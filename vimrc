@@ -94,6 +94,10 @@ map ;[ :tabprevious<cr>
 set expandtab
 set shiftwidth=2
 
+" Plugin Settings
+let g:localvimrc_persistence_file=$VIMHOME."/localvimrc_persist"
+let g:localvimrc_persistent=1
+
 let g:ctrlp_working_path_mode = 'ra'
 let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 let g:ctrlp_custom_ignore = {
