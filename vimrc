@@ -43,7 +43,7 @@ syntax on
 
 " Autosettings
 augroup mkd " MarkDown
-  autocmd FileType mkd setlocal ai spell nofoldenable colorcolumn=80
+  autocmd FileType mkd.markdown setlocal ai spell nofoldenable colorcolumn=80
 augroup END
 
 augroup commit
