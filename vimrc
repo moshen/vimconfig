@@ -71,6 +71,8 @@ set hidden
 set hlsearch
 set number
 set tabstop=2
+set expandtab
+set shiftwidth=2
 set wrap
 set autoindent
 set backspace=indent,eol,start
@@ -90,14 +92,14 @@ endif
 
 " Mappings
 
-"   Tab nav
-map ;] :tabnext<cr>
-map ;[ :tabprevious<cr>
+" Map more <Leader>
+let mapleader = " "
+map \ <Leader>
 
-" Work
-
-set expandtab
-set shiftwidth=2
+"   Copy
+map <Leader>y "+y
+"   Paste
+map <Leader>p "+p
 
 " Plugin Settings
 let g:localvimrc_persistence_file=$VIMHOME."/localvimrc_persist"
