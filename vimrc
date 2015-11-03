@@ -1,7 +1,10 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
+if !$VIMHOME
+  let $VIMHOME=$HOME."/.vim"
+endif
+set rtp+=$VIMHOME/bundle/Vundle.vim
 call vundle#begin()
 
 " let Vundle manage Vundle
