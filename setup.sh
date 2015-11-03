@@ -102,8 +102,8 @@ mkdir -p .config/nvim
 # Check for readlink on Solaris/BSD
 readlink=$(type -p greadlink readlink | head -1)
 
-toLink=( .vimrc .nvimrc .nvim )
-linkTargets=( .vim/vimrc .vimrc .vim )
+toLink=( .vimrc .config/nvim )
+linkTargets=( .vim/vimrc ../.vim )
 
 for i in "${!toLink[@]}"; do
   if [ -L "${toLink[$i]}" ]; then
