@@ -27,6 +27,7 @@ Plugin 'ervandew/supertab'
 Plugin 'Lokaltog/vim-easymotion'
 Plugin 'embear/vim-localvimrc'
 Plugin 'ntpeters/vim-better-whitespace'
+Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()
 
