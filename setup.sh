@@ -3,7 +3,7 @@
 # Bail out on failure
 set -e
 
-cd $HOME
+cd "$HOME"
 
 timestamp=$(date "+%Y%m%d_%H%M%S")
 branch="master"
@@ -36,7 +36,7 @@ case $1 in
 
   if [ -e ".vim" ]; then
     echo "$HOME/.vim exists, moving to .vim.$timestamp"
-    mv .vim .vim.$timestamp
+    mv .vim ".vim.$timestamp"
   fi
 
   git clone https://github.com/moshen/vimconfig.git .vim ||
@@ -58,7 +58,7 @@ case $1 in
     { echo "Unclean repo, exiting..."; exit 1; }
 
   # Get changes from Git!
-  git pull origin $(git rev-parse --abbrev-ref HEAD)||
+  git pull origin "$(git rev-parse --abbrev-ref HEAD)" ||
     { echo "Failed to pull changes, exiting..."; exit 1; }
 
   # Update Plugins
@@ -89,13 +89,15 @@ git clone https://github.com/gmarik/Vundle.vim.git bundle/Vundle.vim ||
 
 If you're trying to update, use the -u flag!"; exit 1; }
 
-git checkout $branch ||
+git checkout "$branch" ||
   echo "Git checkout failed, continuing...
   but seriously, check your available branches.
 "
 
 # Link up!
-cd $HOME
+cd "$HOME"
+
+mkdir -p .config/nvim
 
 # Check for readlink on Solaris/BSD
 readlink=$(type -p greadlink readlink | head -1)
@@ -103,26 +105,26 @@ readlink=$(type -p greadlink readlink | head -1)
 toLink=( .vimrc .nvimrc .nvim )
 linkTargets=( .vim/vimrc .vimrc .vim )
 
-for i in ${!toLink[@]}; do
+for i in "${!toLink[@]}"; do
   if [ -L "${toLink[$i]}" ]; then
     if [ "$readlink" ]; then
-      if [ "$($readlink -n ${toLink[$i]})" == "${linkTargets[$i]}" ]; then
+      if [ "$($readlink -n "${toLink[$i]}")" == "${linkTargets[$i]}" ]; then
         echo "$HOME/${toLink[$i]} already links to ${linkTargets[$i]}"
         continue
       fi
     fi
 
     echo "$HOME/${toLink[$i]} exists, moving to ${toLink[$i]}.$timestamp"
-    mv ${toLink[$i]} ${toLink[$i]}.$timestamp
-    ln -s ${linkTargets[$i]} ${toLink[$i]}
+    mv "${toLink[$i]}" "${toLink[$i]}.$timestamp"
+    ln -s "${linkTargets[$i]}" "${toLink[$i]}"
 
   elif [ -e "${toLink[$i]}" ]; then
     echo "$HOME/${toLink[$i]} exists, moving to ${toLink[$i]}.$timestamp"
-    mv ${toLink[$i]} ${toLink[$i]}.$timestamp
-    ln -s ${linkTargets[$i]} ${toLink[$i]}
+    mv "${toLink[$i]}" "${toLink[$i]}.$timestamp"
+    ln -s "${linkTargets[$i]}" "${toLink[$i]}"
 
   else
-    ln -s ${linkTargets[$i]} ${toLink[$i]}
+    ln -s "${linkTargets[$i]}" "${toLink[$i]}"
   fi
 done
 
