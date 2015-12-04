@@ -129,6 +129,10 @@ done
 # Create spell directory for NeoVim
 mkdir .vim/spell
 
+# Download spelling files
+curl 'http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl' > .vim/spell/en.utf-8.spl
+curl 'http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.sug' > .vim/spell/en.utf-8.sug
+
 # Install Plugins
 echo "" | vim +PluginInstall +qall - ||
   { echo "Vim exited with $?, you may need to check your config."; exit 1; }
