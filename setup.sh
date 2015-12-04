@@ -97,8 +97,6 @@ git checkout "$branch" ||
 # Link up!
 cd "$HOME"
 
-mkdir -p .config/nvim
-
 # Check for readlink on Solaris/BSD
 readlink=$(type -p greadlink readlink | head -1)
 
