@@ -126,6 +126,9 @@ for i in "${!toLink[@]}"; do
   fi
 done
 
+# Create spell directory for NeoVim
+mkdir .vim/spell
+
 # Install Plugins
 echo "" | vim +PluginInstall +qall - ||
   { echo "Vim exited with $?, you may need to check your config."; exit 1; }
