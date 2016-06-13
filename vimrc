@@ -49,6 +49,11 @@ augroup commit
   autocmd FileType gitcommit,cvs setlocal spell textwidth=72 colorcolumn=73
 augroup END
 
+" JSON files masquerading as other files
+autocmd BufRead,BufNewFile
+  \ .bowerrc,.jscsrc,.jshintrc,.eslintrc
+  \ setfiletype json
+
 " Enable the mouse
 if has('mouse')
   set mouse=a
