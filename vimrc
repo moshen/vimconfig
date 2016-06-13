@@ -81,6 +81,9 @@ set wrap
 set autoindent
 set backspace=indent,eol,start
 
+" Grep accross all files in local directory
+set grepprg=grep\ -nR\ $*\ .
+
 " GUI
 
 if has("gui_running")
@@ -104,6 +107,23 @@ map \ <Leader>
 map <Leader>y "+y
 "   Paste
 map <Leader>p "+p
+
+" Grep operator
+nnoremap <Leader>g :set operatorfunc=GrepOperator<cr>g@
+vnoremap <Leader>g :<c-u>call GrepOperator(visualmode())<cr>
+
+function! GrepOperator(type)
+    if a:type ==# 'v'
+        normal! `<v`>y
+    elseif a:type ==# 'char'
+        normal! `[v`]y
+    else
+        return
+    endif
+
+    silent! execute "grep! " . shellescape(@@)
+    copen
+endfunction
 
 " Plugin Settings
 let g:localvimrc_persistence_file=$VIMHOME."/localvimrc_persist"
