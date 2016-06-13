@@ -31,8 +31,6 @@ Plugin 'editorconfig/editorconfig-vim'
 
 call vundle#end()
 
-set backupskip=/tmp/*,/private/tmp/*"
-
 try
   colorscheme wombat256mod
 catch
