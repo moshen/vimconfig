@@ -113,16 +113,16 @@ nnoremap <Leader>g :set operatorfunc=GrepOperator<cr>g@
 vnoremap <Leader>g :<c-u>call GrepOperator(visualmode())<cr>
 
 function! GrepOperator(type)
-    if a:type ==# 'v'
-        normal! `<v`>y
-    elseif a:type ==# 'char'
-        normal! `[v`]y
-    else
-        return
-    endif
+  if a:type ==# 'v'
+    normal! `<v`>y
+  elseif a:type ==# 'char'
+    normal! `[v`]y
+  else
+    return
+  endif
 
-    silent! execute "grep! " . shellescape(@@)
-    copen
+  silent! execute "grep! -F " . shellescape(@@)
+  copen
 endfunction
 
 " Plugin Settings
