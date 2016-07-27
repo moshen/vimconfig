@@ -28,6 +28,7 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'embear/vim-localvimrc'
 Plugin 'ntpeters/vim-better-whitespace'
 Plugin 'editorconfig/editorconfig-vim'
+Plugin 'mechatroner/rainbow_csv'
 
 call vundle#end()
 
