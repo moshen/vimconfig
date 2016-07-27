@@ -154,3 +154,8 @@ endif
 
 let g:vundle_default_git_proto = 'git'
 
+" Editorconfig should be installed on the command line
+" so we don't revert to the Python version
+if executable('editorconfig')
+  let g:EditorConfig_core_mode = 'external_command'
+endif
