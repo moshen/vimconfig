@@ -59,6 +59,11 @@ autocmd BufRead,BufNewFile
   \ .bowerrc,.jscsrc,.jshintrc,.eslintrc
   \ setfiletype json
 
+" HTML templates
+autocmd BufRead,BufNewFile
+  \ *.vue
+  \ setfiletype html
+
 " Enable the mouse
 if has('mouse')
   set mouse=a
