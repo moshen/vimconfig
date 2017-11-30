@@ -82,9 +82,6 @@ set wrap
 set autoindent
 set backspace=indent,eol,start
 
-" Grep accross all files in local directory
-set grepprg=grep\ -nR\ $*\ .
-
 " GUI
 
 if has("gui_running")
@@ -138,18 +135,39 @@ let g:ctrlp_custom_ignore = {
   \ }
 let g:ctrlp_extensions = ['dir', 'mixed']
 
-" The Silver Searcher
-if executable('ag')
-  " Use ag over grep
+function GrepUseRipgrep()
+  set grepprg=rg\ --no-heading\ --vimgrep\ $*
+  set grepformat=%f:%l:%c:%m
+
+  unlet g:ctrlp_user_command
+  let g:ctrlp_user_command = 'rg --color=never --files %s'
+endfunction
+
+function GrepUseSilverSearcher()
   set grepprg=ag\ --vimgrep\ $*
   set grepformat=%f:%l:%c:%m
 
-  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   unlet g:ctrlp_user_command
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+endfunction
 
-  " ag is fast enough that CtrlP doesn't need to cache
-  let g:ctrlp_use_caching = 0
+function GrepUseGrep()
+  if executable('ggrep') " GNU Grep
+    " Grep accross all files in local directory
+    set grepprg=ggrep\ -nR\ $*\ .
+  else
+    set grepprg=grep\ -nR\ $*\ .
+  endif
+
+  set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
+endfunction
+
+if executable('rg')
+  call GrepUseRipgrep()
+elseif executable('ag')
+  call GrepUseSilverSearcher()
+else
+  call GrepUseGrep()
 endif
 
 let g:vundle_default_git_proto = 'git'
