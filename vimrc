@@ -1,40 +1,50 @@
 set nocompatible
+set guioptions=M
 filetype off
-
-if !has("gui_running")
-  set guioptions=M
-endif
 
 if !$VIMHOME
   let $VIMHOME=$HOME."/.vim"
 endif
-set rtp+=$VIMHOME/bundle/Vundle.vim
-call vundle#begin()
+set rtp+=$VIMHOME/dein/repos/github.com/Shougo/dein.vim
 
-" let Vundle manage Vundle
-" required!
-Plugin 'VundleVim/Vundle.vim'
+if dein#load_state(expand($VIMHOME.'/dein'))
+  call dein#begin(expand($VIMHOME.'/dein')) " plugins' root path
 
-" Plugins
-" vim-scripts
-Plugin 'Wombat'
-Plugin 'wombat256.vim'
-Plugin 'genutils'
-" github
-Plugin 'groenewege/vim-less'
-Plugin 'plasticboy/vim-markdown'
-Plugin 'ctrlpvim/ctrlp.vim'
-Plugin 'tpope/vim-git'
-Plugin 'bling/vim-airline'
-Plugin 'scrooloose/nerdtree'
-Plugin 'ervandew/supertab'
-Plugin 'Lokaltog/vim-easymotion'
-Plugin 'embear/vim-localvimrc'
-Plugin 'ntpeters/vim-better-whitespace'
-Plugin 'editorconfig/editorconfig-vim'
-Plugin 'mechatroner/rainbow_csv'
+  " let Dein manage Dein
+  call dein#add('Shougo/dein.vim')
 
-call vundle#end()
+  call dein#add('vim-scripts/Wombat')
+  call dein#add('vim-scripts/wombat256.vim')
+  call dein#add('vim-scripts/genutils')
+  call dein#add('ctrlpvim/ctrlp.vim')
+  call dein#add('tpope/vim-git')
+  call dein#add('bling/vim-airline')
+  call dein#add('scrooloose/nerdtree', {
+  \   'on_cmd': ['NERDTree', 'NERDTreeToggle']
+  \ })
+  call dein#add('ervandew/supertab', {
+  \   'on_map': {
+  \     'i': '<Tab>'
+  \   }
+  \ })
+  call dein#add('Lokaltog/vim-easymotion', {
+  \   'on_map': {
+  \     'n': ['<Leader><Leader>', '<Space><Space>']
+  \   }
+  \ })
+  call dein#add('embear/vim-localvimrc')
+  call dein#add('ntpeters/vim-better-whitespace')
+  call dein#add('editorconfig/editorconfig-vim')
+  call dein#add('plasticboy/vim-markdown', {
+  \   'on_ft': 'markdown'
+  \ })
+  call dein#add('mechatroner/rainbow_csv', {
+  \   'on_ft': 'csv'
+  \ })
+
+  call dein#end()
+  call dein#save_state()
+endif
 
 try
   colorscheme wombat256mod
@@ -100,15 +110,30 @@ set backspace=indent,eol,start
 
 " GUI
 
-if has("gui_running")
-  colorscheme wombat
+function ConfigureGui()
+  try
+    colorscheme wombat
+  catch
+  endtry
 
-  if has("gui_win32") || has("gui_win32s")
-    set guifont=Ubuntu_Mono_derivative_Powerlin:h18
-    let g:airline_powerline_fonts = 1
-    set encoding=utf-8
+  let g:airline_powerline_fonts = 1
+  set encoding=utf-8
+
+  if empty($NVIM_GUI)
+    set guifont=Ubuntu_Mono_derivative_Powerlin:h12
+  else
+    Guifont Ubuntu Mono derivative Powerlin:h12
+  endif
+
+  if has("win32") || has("win32s")
+    " Turn off powerline for sub-processes
+    let $POWERLINE_FONT=""
     set fileencodings=ucs-bom,utf-8
   endif
+endfunction
+
+if has("gui_running")
+  call ConfigureGui()
 endif
 
 " Mappings
@@ -187,8 +212,6 @@ elseif executable('ag')
 else
   call GrepUseGrep()
 endif
-
-let g:vundle_default_git_proto = 'git'
 
 " Editorconfig should be installed on the command line
 " so we don't revert to the Python version

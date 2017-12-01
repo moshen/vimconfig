@@ -1,4 +1,5 @@
 /bundle/
+/dein/
 /spell/
 .netrwhist
 localvimrc_persist

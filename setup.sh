@@ -1,5 +1,11 @@
 #!/bin/bash -i
 
+# Requires Bash 4+
+
+# On windows, this needs to be run from a cmd prompt with admin priviledges as:
+#   bash setup.sh <args>
+# Trying to run this from a git bash mintty or another terminal will fail
+
 # Bail out on failure
 set -e
 
@@ -27,6 +33,46 @@ if [ $# -gt 2 ]; then
 "
 
   print_help
+fi
+
+function winMklink() {
+  local t="${1//\//\\}"
+  local s="${2//\//\\}"
+  if [[ -d $1 ]]; then
+    cmd <<< "mklink /D \"$s\" \"$t\""
+  else
+    cmd <<< "mklink \"$s\" \"$t\""
+  fi
+}
+
+function updateSpellFiles() {
+  curl 'http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl' > "$HOME/.vim/spell/en.utf-8.spl"
+  curl 'http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.sug' > "$HOME/.vim/spell/en.utf-8.sug"
+}
+
+function updateVimPlugins() {
+  for vim in "${vims[@]}"; do
+    if which -s "$vim"; then
+      "$vim" "+call dein#set_hook('dein.vim', 'hook_done_update', 'qa') | call dein#update()" ||
+        { echo "$vim exited with $?, you may need to check your config."; exit 1; }
+    fi
+  done
+}
+
+# Run config, paths are relative to $HOME
+if [[ $(uname -s) =~ ^MINGW64_NT ]]; then
+  # If running in msys bash, we do windows setup
+  mkdir -p AppData/Local/nvim
+  toLink=( _vimrc AppData/Local/nvim/init.vim AppData/Local/nvim/ginit.vim)
+  linkTargets=( .vim/vimrc ../../../.vim/vimrc ../../../.vim/ginit.vim )
+  linkCmd="winMklink"
+  IFS=$'\n' vims=( $(ls -1 "/c/Program Files (x86)/Vim/" | xargs -n 1 printf "/c/Program Files (x86)/Vim/%s/vim\n") nvim )
+else
+  # Assume we're on some kind of *nix
+  toLink=( .vimrc .config/nvim )
+  linkTargets=( .vim/vimrc ../.vim )
+  linkCmd="ln -s"
+  vims=( vim nvim )
 fi
 
 case $1 in
@@ -61,8 +107,11 @@ case $1 in
   git pull origin "$(git rev-parse --abbrev-ref HEAD)" ||
     { echo "Failed to pull changes, exiting..."; exit 1; }
 
+  # Update Spell files
+  updateSpellFiles
+
   # Update Plugins
-  vim +PluginClean! +PluginInstall +PluginUpdate +qall 2>/dev/null
+  updateVimPlugins
 
   echo "Done! Your vim config is up-to-date"
 
@@ -83,25 +132,31 @@ fi
 
 cd .vim
 
-# Grab Vundle
-git clone https://github.com/VundleVim/Vundle.vim.git bundle/Vundle.vim ||
-  { echo "Failed to clone Vundle.
+# Grab Dein
+git clone https://github.com/Shougo/dein.vim.git dein/repos/github.com/Shougo/dein.vim ||
+  { echo "Failed to clone Dein.
 
 If you're trying to update, use the -u flag!"; exit 1; }
 
-git checkout "$branch" ||
-  echo "Git checkout failed, continuing...
-  but seriously, check your available branches.
-"
+if ! git branch --all | grep -q "$branch"; then
+  echo "$branch doesn't exist, continuing on master"
+  branch="master"
+fi
+
+# If we change branches, we want to run the setup.sh from that branch
+if [[ $(git rev-parse --abbrev-ref HEAD) != $branch ]]; then
+  git checkout "$branch" || {
+    echo "Checking out $branch failed.  Bailing out";
+    exit 1;
+  }
+  exec ./setup.sh "$branch"
+fi
 
 # Link up!
 cd "$HOME"
 
 # Check for readlink on Solaris/BSD
 readlink=$(type -p greadlink readlink | head -1)
-
-toLink=( .vimrc .config/nvim )
-linkTargets=( .vim/vimrc ../.vim )
 
 for i in "${!toLink[@]}"; do
   if [ -L "${toLink[$i]}" ]; then
@@ -114,15 +169,15 @@ for i in "${!toLink[@]}"; do
 
     echo "$HOME/${toLink[$i]} exists, moving to ${toLink[$i]}.$timestamp"
     mv "${toLink[$i]}" "${toLink[$i]}.$timestamp"
-    ln -s "${linkTargets[$i]}" "${toLink[$i]}"
+    $linkCmd "${linkTargets[$i]}" "${toLink[$i]}"
 
   elif [ -e "${toLink[$i]}" ]; then
     echo "$HOME/${toLink[$i]} exists, moving to ${toLink[$i]}.$timestamp"
     mv "${toLink[$i]}" "${toLink[$i]}.$timestamp"
-    ln -s "${linkTargets[$i]}" "${toLink[$i]}"
+    $linkCmd "${linkTargets[$i]}" "${toLink[$i]}"
 
   else
-    ln -s "${linkTargets[$i]}" "${toLink[$i]}"
+    $linkCmd "${linkTargets[$i]}" "${toLink[$i]}"
   fi
 done
 
@@ -130,14 +185,11 @@ done
 mkdir -p .vim/spell
 
 # Download spelling files
-curl 'http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl' > .vim/spell/en.utf-8.spl
-curl 'http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.sug' > .vim/spell/en.utf-8.sug
+updateSpellFiles
 
 # Install Plugins
-echo "" | vim +PluginInstall +qall - ||
-  { echo "Vim exited with $?, you may need to check your config."; exit 1; }
+updateVimPlugins
 
 echo "Done!  Vim is fully configured."
 
 exit 0
-
