@@ -127,7 +127,7 @@ for i in "${!toLink[@]}"; do
 done
 
 # Create spell directory for NeoVim
-mkdir .vim/spell
+mkdir -p .vim/spell
 
 # Download spelling files
 curl 'http://ftp.vim.org/pub/vim/runtime/spell/en.utf-8.spl' > .vim/spell/en.utf-8.spl
