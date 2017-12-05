@@ -1,6 +1,10 @@
 set nocompatible
 filetype off
 
+if !has("gui_running")
+  set guioptions=M
+endif
+
 if !$VIMHOME
   let $VIMHOME=$HOME."/.vim"
 endif
