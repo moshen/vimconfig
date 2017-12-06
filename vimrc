@@ -141,7 +141,7 @@ let g:localvimrc_persistence_file=$VIMHOME."/localvimrc_persist"
 let g:localvimrc_persistent=1
 
 let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
+let g:ctrlp_user_command = []
 let g:ctrlp_custom_ignore = {
   \ 'dir':  '\.git$\|CVS$\|\.svn$\|target$\|node_modules\|bower_components',
   \ 'file': '\.class$\|\.so$\|\.swp$',
@@ -173,6 +173,8 @@ function GrepUseGrep()
   endif
 
   set grepformat=%f:%l:%m,%f:%l%m,%f\ \ %l%m
+  unlet g:ctrlp_user_command
+  let g:ctrlp_user_command = ['.git/', 'git --git-dir=%s/.git ls-files -oc --exclude-standard']
 endfunction
 
 if executable('rg')
