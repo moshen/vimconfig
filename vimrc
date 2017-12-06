@@ -46,27 +46,30 @@ filetype plugin on
 syntax on
 
 " Autosettings
-augroup mkd " MarkDown
-  autocmd FileType markdown setlocal ai spell nofoldenable colorcolumn=80
-augroup END
 
-augroup commit
+augroup vimrc
+  autocmd!
+
+  autocmd FileType markdown setlocal ai spell nofoldenable colorcolumn=80
   autocmd FileType gitcommit,cvs setlocal spell textwidth=72 colorcolumn=73
+
+  " JSON files masquerading as other files
+  autocmd BufRead,BufNewFile
+    \ .bowerrc,.jscsrc,.jshintrc,.eslintrc
+    \ setfiletype json
+
+  " HTML templates
+  autocmd BufRead,BufNewFile
+    \ *.vue
+    \ setfiletype html
 augroup END
 
 if has("nvim")
-  autocmd TermOpen * setlocal scrollback=100000
+  augroup nvim_vimrc
+    autocmd!
+    autocmd TermOpen * setlocal scrollback=100000
+  augroup END
 endif
-
-" JSON files masquerading as other files
-autocmd BufRead,BufNewFile
-  \ .bowerrc,.jscsrc,.jshintrc,.eslintrc
-  \ setfiletype json
-
-" HTML templates
-autocmd BufRead,BufNewFile
-  \ *.vue
-  \ setfiletype html
 
 " Enable the mouse
 if has('mouse')
