@@ -29,7 +29,7 @@ if dein#load_state(expand($VIMHOME.'/dein'))
   \ })
   call dein#add('Lokaltog/vim-easymotion', {
   \   'on_map': {
-  \     'n': ['<Leader><Leader>', '<Space><Space>']
+  \     'nv': ['<Leader><Leader>', '<Space><Space>']
   \   }
   \ })
   call dein#add('embear/vim-localvimrc')
