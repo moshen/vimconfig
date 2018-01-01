@@ -63,8 +63,8 @@ function updateVimPlugins() {
 if [[ $(uname -s) =~ ^MINGW64_NT ]]; then
   # If running in msys bash, we do windows setup
   mkdir -p AppData/Local/nvim
-  toLink=( _vimrc AppData/Local/nvim/init.vim AppData/Local/nvim/ginit.vim)
-  linkTargets=( .vim/vimrc ../../../.vim/vimrc ../../../.vim/ginit.vim )
+  toLink=( _vimrc AppData/Local/nvim/init.vim AppData/Local/nvim/ginit.vim AppData/Local/nvim/spell )
+  linkTargets=( .vim/vimrc ../../../.vim/vimrc ../../../.vim/ginit.vim ../../../.vim/spell )
   linkCmd="winMklink"
   IFS=$'\n' vims=( $(ls -1 "/c/Program Files (x86)/Vim/" | xargs -n 1 printf "/c/Program Files (x86)/Vim/%s/vim\n") nvim )
 else
@@ -155,6 +155,12 @@ fi
 # Link up!
 cd "$HOME"
 
+# Create spell directory for NeoVim
+mkdir -p .vim/spell
+
+# Download spelling files
+updateSpellFiles
+
 # Check for readlink on Solaris/BSD
 readlink=$(type -p greadlink readlink | head -1)
 
@@ -180,12 +186,6 @@ for i in "${!toLink[@]}"; do
     $linkCmd "${linkTargets[$i]}" "${toLink[$i]}"
   fi
 done
-
-# Create spell directory for NeoVim
-mkdir -p .vim/spell
-
-# Download spelling files
-updateSpellFiles
 
 # Install Plugins
 updateVimPlugins
