@@ -122,7 +122,7 @@ function ConfigureGui()
   if empty($NVIM_GUI)
     set guifont=Ubuntu_Mono_derivative_Powerlin:h12
   else
-    Guifont Ubuntu Mono derivative Powerlin:h12
+    Guifont! Ubuntu Mono derivative Powerlin:h12
   endif
 
   if has("win32") || has("win32s")
