@@ -2,7 +2,13 @@
 
 # Requires Bash 4+
 
-# On windows, this needs to be run from a cmd prompt with admin priviledges
+# Windows Setup:
+#
+# Before starting, setup Chocolatey, and install these dependencies:
+#
+# choco install neovim git editorconfig.core
+#
+# This needs to be run from a cmd prompt with admin priviledges
 # using the Git bash exe.  For example:
 #
 #   "C:\Program Files\Git\bin\bash.exe" setup.sh <args>
