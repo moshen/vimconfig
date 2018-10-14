@@ -2,9 +2,15 @@
 
 # Requires Bash 4+
 
-# On windows, this needs to be run from a cmd prompt with admin priviledges as:
-#   bash setup.sh <args>
-# Trying to run this from a git bash mintty or another terminal will fail
+# On windows, this needs to be run from a cmd prompt with admin priviledges
+# using the Git bash exe.  For example:
+#
+#   "C:\Program Files\Git\bin\bash.exe" setup.sh <args>
+#
+# Trying to run this from a git bash mintty or another terminal will fail.
+# Windows 10 with WSL/Ubuntu/etc installed will also have it's own `bash` in
+# System32.  This will also fail because it will try to install within the
+# WSL filesystem
 
 # Bail out on failure
 set -e
