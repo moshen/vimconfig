@@ -65,7 +65,7 @@ function updateSpellFiles() {
 function updateVimPlugins() {
   for vim in "${vims[@]}"; do
     if which -s "$vim"; then
-      "$vim" "+call dein#set_hook('dein.vim', 'hook_done_update', 'qa') | call dein#update()" ||
+      "$vim" -N -u "$HOME/.vimrc" -c "try | call dein#update() | finally | qall! | endtry" -V1 -es ||
         { echo "$vim exited with $?, you may need to check your config."; exit 1; }
     fi
   done
@@ -125,7 +125,8 @@ case $1 in
   # Update Plugins
   updateVimPlugins
 
-  echo "Done! Your vim config is up-to-date"
+  echo "
+Done! Your vim config is up-to-date"
 
   exit 0;
   ;;
