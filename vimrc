@@ -7,6 +7,10 @@ if !$VIMHOME
 endif
 set rtp+=$VIMHOME/dein/repos/github.com/Shougo/dein.vim
 
+" Enable completion where available.
+" This setting must be set before ALE is loaded.
+let g:ale_completion_enabled = 1
+
 if dein#load_state(expand($VIMHOME.'/dein'))
   call dein#begin(expand($VIMHOME.'/dein')) " plugins' root path
 
@@ -22,11 +26,7 @@ if dein#load_state(expand($VIMHOME.'/dein'))
   call dein#add('scrooloose/nerdtree', {
   \   'on_cmd': ['NERDTree', 'NERDTreeToggle']
   \ })
-  call dein#add('ervandew/supertab', {
-  \   'on_map': {
-  \     'i': '<Tab>'
-  \   }
-  \ })
+  call dein#add('ajh17/VimCompletesMe')
   call dein#add('Lokaltog/vim-easymotion', {
   \   'on_map': {
   \     'nv': ['<Leader><Leader>', '<Space><Space>']
@@ -41,6 +41,8 @@ if dein#load_state(expand($VIMHOME.'/dein'))
   call dein#add('mechatroner/rainbow_csv', {
   \   'on_ft': 'csv'
   \ })
+  call dein#add('HerringtonDarkholme/yats.vim') " Typescript
+  call dein#add('w0rp/ale') " Linting / Fixing / Completion
 
   call dein#end()
   call dein#save_state()
@@ -218,3 +220,12 @@ endif
 if executable('editorconfig')
   let g:EditorConfig_core_mode = 'external_command'
 endif
+
+" Ale
+let g:airline#extensions#ale#enabled = 1
+let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+let g:ale_linters = {
+  \ 'javascript': ['eslint'],
+  \ 'typescript': ['tslint', 'tsserver'],
+  \ 'Dockerfile': ['hadolint']
+  \ }
