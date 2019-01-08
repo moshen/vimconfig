@@ -47,6 +47,10 @@ if [ $# -gt 2 ]; then
   print_help
 fi
 
+function which_silent {
+  command -v "$1" > /dev/null
+}
+
 function winMklink() {
   local t="${1//\//\\}"
   local s="${2//\//\\}"
@@ -64,7 +68,7 @@ function updateSpellFiles() {
 
 function updateVimPlugins() {
   for vim in "${vims[@]}"; do
-    if which -s "$vim"; then
+    if which_silent "$vim"; then
       "$vim" -N -u "$HOME/.vimrc" -c "try | call dein#update() | finally | qall! | endtry" -V1 -es ||
         { echo "$vim exited with $?, you may need to check your config."; exit 1; }
     fi
@@ -78,7 +82,9 @@ if [[ $(uname -s) =~ ^MINGW64_NT ]]; then
   toLink=( _vimrc AppData/Local/nvim/init.vim AppData/Local/nvim/ginit.vim AppData/Local/nvim/spell )
   linkTargets=( .vim/vimrc ../../../.vim/vimrc ../../../.vim/ginit.vim ../../../.vim/spell )
   linkCmd="winMklink"
-  IFS=$'\n' vims=( $(ls -1 "/c/Program Files (x86)/Vim/" | xargs -n 1 printf "/c/Program Files (x86)/Vim/%s/vim\n") nvim )
+  # Gets an array of full paths of vims
+  # shellcheck disable=SC2207
+  IFS=$'\n' vims=( $(find "/c/Program Files (x86)/Vim/" -depth 1 -print | xargs -n 1 printf "/c/Program Files (x86)/Vim/%s/vim\n") nvim )
 else
   # Assume we're on some kind of *nix
   toLink=( .vimrc .config/nvim )
@@ -157,7 +163,7 @@ if ! git branch --all | grep -q "$branch"; then
 fi
 
 # If we change branches, we want to run the setup.sh from that branch
-if [[ $(git rev-parse --abbrev-ref HEAD) != $branch ]]; then
+if [[ $(git rev-parse --abbrev-ref HEAD) != "$branch" ]]; then
   git checkout "$branch" || {
     echo "Checking out $branch failed.  Bailing out";
     exit 1;
