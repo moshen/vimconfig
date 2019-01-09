@@ -69,7 +69,7 @@ function updateSpellFiles() {
 function updateVimPlugins() {
   for vim in "${vims[@]}"; do
     if which_silent "$vim"; then
-      "$vim" -N -u "$HOME/.vimrc" -c "try | call dein#update() | finally | qall! | endtry" -V1 -es ||
+      "$vim" -N -u "$HOME/.vim/vimrc" -c "try | call dein#update() | finally | qall! | endtry" -V1 -es ||
         { echo "$vim exited with $?, you may need to check your config."; exit 1; }
     fi
   done
