@@ -82,9 +82,18 @@ if [[ $(uname -s) =~ ^MINGW64_NT ]]; then
   toLink=( _vimrc AppData/Local/nvim/init.vim AppData/Local/nvim/ginit.vim AppData/Local/nvim/spell )
   linkTargets=( .vim/vimrc ../../../.vim/vimrc ../../../.vim/ginit.vim ../../../.vim/spell )
   linkCmd="winMklink"
-  # Gets an array of full paths of vims
-  # shellcheck disable=SC2207
-  IFS=$'\n' vims=( $(find "/c/Program Files (x86)/Vim/" -depth 1 -print | xargs -n 1 printf "/c/Program Files (x86)/Vim/%s/vim\n") nvim )
+
+  # Vim will install multiple versions into folders within Program Files (x86)
+  # this check may not be necessary since I haven't used gvim in awhile.
+  # We should probably replace the windows and nix vims assignment with something
+  # thtat just checks the $PATH for vim/nvim
+  if [[ -d "/c/Program Files (x86)/Vim/" ]]; then
+    # Gets an array of full paths of vims
+    # shellcheck disable=SC2207,SC2011
+    IFS=$'\n' vims=( $(ls -1 "/c/Program Files (x86)/Vim/" | xargs -n 1 printf "/c/Program Files (x86)/Vim/%s/vim\n") nvim )
+  else
+    vims=( nvim )
+  fi
 else
   # Assume we're on some kind of *nix
   toLink=( .vimrc .config/nvim )
