@@ -76,13 +76,6 @@ augroup vimrc
     \ setfiletype html
 augroup END
 
-if has("nvim")
-  augroup nvim_vimrc
-    autocmd!
-    autocmd TermOpen * setlocal scrollback=100000
-  augroup END
-endif
-
 " Enable the mouse
 if has('mouse')
   set mouse=a
@@ -137,6 +130,18 @@ endfunction
 if has("gui_running")
   call ConfigureGui()
 endif
+
+" Neovim
+
+if has("nvim")
+  augroup nvim_vimrc
+    autocmd!
+    autocmd TermOpen * setlocal scrollback=100000
+    autocmd TermOpen * hi BlackBg cterm=NONE ctermbg=0 guibg=black
+    autocmd TermOpen * setlocal winhighlight=Normal:BlackBg
+  augroup END
+endif
+
 
 " Mappings
 
