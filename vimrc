@@ -251,7 +251,7 @@ endif
 let g:airline#extensions#ale#enabled = 1
 let g:ale_echo_msg_format = '[%linter%] [%severity%] [%code%] %s'
 let g:ale_linters = {
-  \ 'javascript': ['eslint'],
+  \ 'javascript': ['eslint', 'tsserver'],
   \ 'typescript': ['tslint', 'tsserver'],
   \ 'Dockerfile': ['hadolint']
   \ }
