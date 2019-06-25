@@ -11,6 +11,8 @@ set rtp+=$VIMHOME/dein/repos/github.com/Shougo/dein.vim
 " This setting must be set before ALE is loaded.
 let g:ale_completion_enabled = 1
 
+set completeopt+=noinsert
+
 if dein#load_state(expand($VIMHOME.'/dein'))
   call dein#begin(expand($VIMHOME.'/dein')) " plugins' root path
 
