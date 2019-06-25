@@ -55,6 +55,7 @@ try
 catch
 endtry
 
+set title
 set background=dark
 filetype plugin on
 syntax on
